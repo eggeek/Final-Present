@@ -1,0 +1,74 @@
+\newcommand{\nodelabel}[2] {
+    \fill[red] (#1) circle[radius=.5ex];
+    \node[#2] at (#1) {#1};
+}
+
+\newcommand{\medge}[2]{
+    \draw[gray,thick] (#1)--(#2);
+}
+
+\newcommand{\drawVs}{
+    %\nodelabel{a}{above}
+    \nodelabel{b}{below}
+    \nodelabel{c}{below}
+    
+    %\nodelabel{d}{left}
+    \nodelabel{e}{right}
+    \nodelabel{f}{below}
+    
+    \nodelabel{g}{above}
+    \nodelabel{h}{below}
+    %\nodelabel{i}{below}
+}
+
+\newcommand{\drawmeshs}{
+    \medge{a}{k},\medge{a}{d},\medge{a}{b},\medge{a}{c}
+    \medge{b}{c},
+    \medge{c}{g}
+    \medge{d}{f},\medge{d}{l},\medge{d}{e}
+    \medge{l}{f}
+    \medge{e}{c},\medge{e}{f}
+    \medge{f}{h}
+    \medge{g}{h},\medge{g}{b}
+    \medge{h}{i}
+}
+
+\newcommand{\drawobstacles}{
+    \fill[black] (a)--(b)--(c)--cycle;
+    \fill[black] (g)--(h)--(i)--cycle;
+    \fill[black] (d)--(e)--(f)--cycle;
+}
+
+%\coordinate (a) at (2, 6); 
+\coordinate (a) at (0, 7);
+\coordinate (b) at (8, 7); 
+\coordinate (c) at (6, 5); 
+\coordinate (d) at (1, 3);
+\coordinate (e) at (4, 3);
+\coordinate (f) at (4, 2);
+\coordinate (g) at (7, 4);
+\coordinate (h) at (7, 2);
+%\coordinate (i) at (9, 0);
+\coordinate (i) at (10, 0);
+\coordinate (j) at (5, 2);
+\coordinate (k) at (0, 7);
+\coordinate (l) at (0, 0);
+\coordinate (m) at (10, 0);
+\coordinate (n) at (10, 7);
+\coordinate (q) at (3, 4);
+\coordinate (t) at (9, 3); 
+% boundary
+\draw[black, ultra thick] (k)--(n)--(m)--(l)--cycle;
+
+% obstacles
+\drawobstacles
+% mesh
+\drawmeshs
+% vertices
+\drawVs
+% start
+\fill[blue] (q) circle[radius=.5ex];
+\node[above] at (q) {$q$};
+% end
+\fill[blue] (t) circle[radius=.5ex];
+\node[above] at (t) {$t$};

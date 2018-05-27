@@ -1,0 +1,129 @@
+\documentclass{beamer}
+\usepackage{graphicx,url}
+\usepackage[brazil]{babel}   
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage{adjustbox}
+\usetikzlibrary{calc}
+\batchmode
+\usepackage{amsmath,amssymb,enumerate,epsfig,bbm,calc,color,ifthen,capt-of}
+\usetheme{Berlin}
+
+%-------------------------Titulo/Autores/Orientador------------------------------------------------
+\title[Fast Obstacle k-Nearest Neighbour Query on Navigation Mesh]{
+    Fast Obstacle k-Nearest Neighbour Query on Navigation Mesh \\
+}
+\subtitle {Final Presentation}
+\date{}
+\author[Shizhe Zhao]{
+    Shizhe Zhao (27505928)\\
+    Supervisor: David Taniar, Daniel Harabor
+}
+
+\pgfdeclareimage[height=0.7cm]{monash-logo}{MonashCrest.pdf}
+\logo{\pgfuseimage{monash-logo}\hspace*{0.5cm}}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+\setbeamercovered{transparent}
+\beamerdefaultoverlayspecification{<+->}
+% -----------------------------------------------------------------------------
+\begin{document}
+% -----------------------------------------------------------------------------
+
+%---Summary---------------------------------------------------------
+\frame{\titlepage}
+\section[]{}
+\begin{frame}{Summary}
+  \tableofcontents
+\end{frame}
+
+% -----------------------------------------------------------------------------
+\section{Introduction}
+\begin{frame}{Introduction}
+A Introduction
+\end{frame}
+%------------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------
+\section{New Framework}
+\begin{frame}{Polyanya: Overview}
+
+\begin{minipage}{.4\textwidth}
+\begin{itemize}
+    \item \small $q$: query point
+    \item \small $t$: target
+    \item \small black polygons are obstacles
+    \item \small gray border convex polygons are mesh
+    \item \small mesh: all inside points are visible
+    \item \small mesh: guides pathfinding
+\end{itemize}
+
+\end{minipage}%
+\begin{minipage}{.6\textwidth}
+\begin{adjustbox}{max totalsize={.9\textwidth}{.9\textheight}, right}
+\begin{tikzpicture}
+    \input{src/polyanya.tex}
+\end{tikzpicture}
+\end{adjustbox}
+\end{minipage}
+
+\end{frame}
+
+\begin{frame}{Polyanya: Search Node}
+
+\begin{minipage}{.4\textwidth}
+\begin{itemize}
+    \item \small root $r$: $r \in (V \cup \{q\})$
+    \item \small interval $I$: on an edge
+    \item \small all point $\in I$: visible from $q$
+\end{itemize}
+\end{minipage}%
+\begin{minipage}{.6\textwidth}
+\begin{adjustbox}{max totalsize={.9\textwidth}{.9\textheight}, right}
+\begin{tikzpicture}
+    \input{src/polyanya.tex}
+    \draw[red,very thick] (e)--(c);
+\end{tikzpicture}
+\end{adjustbox}
+\end{minipage}
+
+\end{frame}
+%------------------------------------------------------------------------------
+
+% %------------------------------------------------------------------------------
+% \section{Related works}
+% \begin{frame}{Related workso}
+% %referencial teorico, estado da arte, etc
+% Related works
+% \end{frame}
+% %------------------------------------------------------------------------------
+
+% %------------------------------------------------------------------------------
+% \section{My research}
+% \begin{frame}{Multi-target Search}
+% Multi-target Search
+% \end{frame}
+% %------------------------------------------------------------------------------
+
+% %------------------------------------------------------------------------------
+% \section{Experiments}
+% \begin{frame}{Experiment}
+
+% \end{frame}
+% %------------------------------------------------------------------------------
+
+% %------------------------------------------------------------------------------
+% \section{Conclusion}
+% \begin{frame}{Conclusion}
+% \end{frame}
+% %------------------------------------------------------------------------------
+
+% -----------------------------------------------------------------------------
+\end{document}
+%-----------------------------------------------
