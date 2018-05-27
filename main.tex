@@ -5,10 +5,10 @@
 \usepackage{tikz}
 \usepackage{adjustbox}
 \usetikzlibrary{calc}
+\usetikzlibrary{arrows}
 \batchmode
 \usepackage{amsmath,amssymb,enumerate,epsfig,bbm,calc,color,ifthen,capt-of}
 \usetheme{Berlin}
-
 %-------------------------Titulo/Autores/Orientador------------------------------------------------
 \title[Fast Obstacle k-Nearest Neighbour Query on Navigation Mesh]{
     Fast Obstacle k-Nearest Neighbour Query on Navigation Mesh \\
@@ -52,49 +52,7 @@ A Introduction
 
 %------------------------------------------------------------------------------
 \section{New Framework}
-\begin{frame}{Polyanya: Overview}
-
-\begin{minipage}{.4\textwidth}
-\begin{itemize}
-    \item \small $q$: query point
-    \item \small $t$: target
-    \item \small black polygons are obstacles
-    \item \small gray border convex polygons are mesh
-    \item \small mesh: all inside points are visible
-    \item \small mesh: guides pathfinding
-\end{itemize}
-
-\end{minipage}%
-\begin{minipage}{.6\textwidth}
-\begin{adjustbox}{max totalsize={.9\textwidth}{.9\textheight}, right}
-\begin{tikzpicture}
-    \input{src/polyanya.tex}
-\end{tikzpicture}
-\end{adjustbox}
-\end{minipage}
-
-\end{frame}
-
-\begin{frame}{Polyanya: Search Node}
-
-\begin{minipage}{.4\textwidth}
-\begin{itemize}
-    \item \small root $r$: $r \in (V \cup \{q\})$
-    \item \small interval $I$: on an edge
-    \item \small all point $\in I$: visible from $q$
-\end{itemize}
-\end{minipage}%
-\begin{minipage}{.6\textwidth}
-\begin{adjustbox}{max totalsize={.9\textwidth}{.9\textheight}, right}
-\begin{tikzpicture}
-    \input{src/polyanya.tex}
-    \draw[red,very thick] (e)--(c);
-\end{tikzpicture}
-\end{adjustbox}
-\end{minipage}
-
-\end{frame}
-%------------------------------------------------------------------------------
+\input{sections/new_framework.tex}
 
 % %------------------------------------------------------------------------------
 % \section{Related works}
