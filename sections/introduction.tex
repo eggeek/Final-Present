@@ -1,0 +1,50 @@
+\begin{frame}{Traditional k-Nearest Neighbor}
+\setbeamercovered{invisible}
+\begin{minipage}{.5\textwidth}
+\small k-Nearest Neighbor:
+\begin{itemize}
+    \item<1-> \small Given:
+    \begin{itemize}
+        \item<2-> \small $q$: query point
+        \item<3-> \small $T$: target set\\\tiny(e.g. $\{A,B,C,D\}$)
+        \item<4-> \small $k$: number of retrieved targets \tiny(e.g. $k=1$)
+    \end{itemize}
+    \item<5-> \small Return:\\top $k$ targets regarding \textit{Euclidean distance}
+    \item<6-> \small the circle indicates that $D$ is the nearest neighbor of $q$
+\end{itemize}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+\begin{adjustbox}{max totalsize={.9\textwidth}{.9\textheight}, right}
+\input{src/kNN.tex}
+\end{adjustbox}
+\end{minipage}
+\end{frame}
+
+\begin{frame}{Obstacle k-Nearest Neighbor}
+\begin{minipage}{.5\textwidth}
+\begin{itemize}
+    \item \small traditional kNN has been well studied.
+    \item \small when take obstacles into consideration...
+\end{itemize}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+\begin{adjustbox}{max totalsize={.9\textwidth}{.9\textheight}, right}
+\only<1,2> {\input{src/kNN.tex}}
+\only<3-> {\input{src/OkNN.tex}}
+\end{adjustbox}
+\end{minipage}
+\end{frame}
+
+\begin{frame}{Application Scenario}
+\begin{minipage}{.5\textwidth}
+\small In an industrial warehouse,\\
+{\color{red}$q$} is a robot.\\
+It's interested in the closest storage locations,\\
+but it can not cross obstacles
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+\begin{adjustbox}{max totalsize={.9\textwidth}{.9\textheight}, right}
+\input{src/OkNN.tex}
+\end{adjustbox}
+\end{minipage}
+\end{frame}

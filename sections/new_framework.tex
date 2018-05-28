@@ -6,8 +6,8 @@
     \item \small black polygons are obstacles
     \item \small $q$: query point
     \item \small $t$: target
-    \item \small gray border convex polygons are meshes
-    \item \small mesh: all inside points are visible
+    \item \small gray border \textbf{convex} polygons are meshes
+    \item \small "convex" guarantees: all inside points are visible
     \item \small mesh: guides pathfinding
 \end{itemize}
 
@@ -161,8 +161,8 @@ so we discard it.}
 }
 \only<7> {
 \small Pop $(q, [g,o])$,\\
-the adjacent mesh contains $t$,\\
-\large \textbf{we've found the shortest path!}
+the adjacent mesh contains $t$.\\
+\large \textbf{We've found the shortest path!}
 }
 \end{minipage}%
 \begin{minipage}{.6\textwidth}
