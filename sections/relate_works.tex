@@ -1,0 +1,65 @@
+\begin{frame}{How to compute Obstacle Distance}
+\begin{minipage}{.4\textwidth}
+\begin{itemize}
+\item \small Existing works rely on \textit{visibility graph} (VG)
+    \begin{itemize}
+        \item \small any pair of visible points has an edge
+    \end{itemize}
+\item \small Run shortest path algorithm on \textit{VG}\\
+             (\tiny{e.g. \textit{Dijkstra}})
+\item \small {Building global VG can be expensive - $O(V^2)$\\
+            (\tiny{$V$: the number of vertex}})
+\end{itemize}
+\end{minipage}%
+\begin{minipage}{.6\textwidth}
+\begin{adjustbox}{max totalsize={.9\textwidth}{.9\textheight}, right}
+\begin{tikzpicture}
+    \input{src/polyanya.tex}
+    \onslide<1->{\drawboundary}
+    \onslide<1->{\drawobstacles}
+    \onslide<2->{\drawVG}
+\end{tikzpicture}
+\end{adjustbox}
+\end{minipage}
+\end{frame}
+
+\begin{frame}{How to compute Obstacle Distance}
+\begin{minipage}{.4\textwidth}
+\begin{itemize}
+\item \small Global VG: expansive
+\item \small Only consider query related area?
+\item \small {\textit{Zhang, EDBT 2004}: \textit{Local Visibility Graph (LVG)}}
+\end{itemize}
+\end{minipage}%
+\begin{minipage}{.6\textwidth}
+\begin{adjustbox}{max totalsize={.9\textwidth}{.9\textheight}, right}
+\begin{tikzpicture}
+    \input{src/polyanya.tex}
+    \onslide<1->{\drawboundary}
+    \onslide<1->{\drawobstacles}
+    \onslide<1->{\drawVG}
+\end{tikzpicture}
+\end{adjustbox}
+\end{minipage}
+\end{frame}
+
+\begin{frame}{Obstacle Distance Computation: \textit{LVG}}
+\begin{minipage}{.4\textwidth}
+\begin{itemize}
+\item \small Given: $q, t$
+\item \small Start with a small VG in $circle(q, r)$
+\begin{itemize}
+    \item \small $r=d_e(q,t)$
+\end{itemize}
+\item \small Enlarge the circle, and build VG increnmentally
+\item \small Terminate when $r>d_e(q, t)$
+\end{itemize}
+\end{minipage}%
+\begin{minipage}{.6\textwidth}
+\begin{adjustbox}{max totalsize={.9\textwidth}{.9\textheight}, right}
+    \only<1>{\input{src/edbt_odc0.tex}}
+    \only<2>{\input{src/edbt_odc1.tex}}
+    \only<3->{\input{src/edbt_odc2.tex}}
+\end{adjustbox}
+\end{minipage}
+\end{frame}

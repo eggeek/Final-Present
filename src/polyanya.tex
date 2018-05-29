@@ -27,6 +27,10 @@
     \draw[gray,thick] (#1)--(#2);
 }
 
+\newcommand{\vgedge}[2]{
+    \draw[black,thick] (#1)--(#2);
+}
+
 \newcommand{\drawVs}{
     %\nodelabel{a}{above}
     \nodelabel{b}{below}
@@ -117,17 +121,20 @@
     \draw[cyan, line width=3pt] (f)--(j);
 }
 
+\newcommand{\drawVG}{
+    \vgedge{a}{d},\vgedge{a}{e},\vgedge{a}{g},\vgedge{a}{h}
+    \vgedge{b}{g},\vgedge{b}{m}
+    \vgedge{c}{d},\vgedge{c}{e},\vgedge{c}{g},\vgedge{c}{f},\vgedge{c}{h}
+    \vgedge{d}{l},\vgedge{d}{g}
+    \vgedge{e}{h},\vgedge{e}{n}
+    \vgedge{f}{l},\vgedge{f}{h},\vgedge{f}{m}
+    \vgedge{g}{n}
+}
 \newcommand{\drawmap}{
-    % boundary
     \drawboundary
-    % obstacles
     \drawobstacles
-    % mesh
     \drawmeshs
-    % vertices
     \drawVs
-    % start
     \drawstart
-    % end
     \drawend
 }
