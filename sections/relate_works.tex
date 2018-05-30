@@ -6,9 +6,9 @@
         \item \small any pair of visible points has an edge
     \end{itemize}
 \item \small Run shortest path algorithm on \textit{VG}\\
-             (\tiny{e.g. \textit{Dijkstra}})
+    \tiny{(e.g. \textit{Dijkstra})}
 \item \small {Building global VG can be expensive - $O(V^2)$\\
-            (\tiny{$V$: the number of vertex}})
+            \tiny{($V$: the number of vertex})}
 \end{itemize}
 \end{minipage}%
 \begin{minipage}{.6\textwidth}
@@ -27,7 +27,7 @@
 \begin{minipage}{.4\textwidth}
 \begin{itemize}
 \item \small Global VG: expansive
-\item \small Only consider query related area?
+\item \small Motivation: only consider query related area
 \item \small {\textit{Zhang, EDBT 2004}: \textit{Local Visibility Graph (LVG)}}
 \end{itemize}
 \end{minipage}%
@@ -54,8 +54,8 @@
 \item \small Compute shortest path on current VG
 \item \small Enlarge the circle 
     \begin{itemize}
-        \item \small build VG incrementally
-        \item \small update shortest path
+        \item \small update VG incrementally
+        \item \small compute new shortest path
     \end{itemize}
 \item \small Terminate when $r>d_o(q, t)$
 \end{itemize}
