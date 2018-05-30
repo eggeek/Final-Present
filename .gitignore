@@ -19,3 +19,4 @@
 *.snm
 *.nav
 !final.pdf
+**/.DS_Store
