@@ -9,35 +9,49 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Multi-target Search: interval heuristic}
+\begin{frame}[fragile]{Proposed algorithm 1: brute-force \textit{Polyanya}}
+\small{A naive solution is calling \textit{Polyanya} for each target:}
+\onslide<2->
+\begin{lstlisting}[language=python]
+for t in targets:
+  polyanya.run(q, t)
+\end{lstlisting}
+\begin{itemize}
+    \item<3->\small{Drawback: inefficient when targets many.}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Proposed algorithm 2: interval heuristic}
 \begin{minipage}{.6\textwidth}
 \begin{itemize}
-\item \small {Let's review heuristic function in \textit{Polyanya}}
-    \begin{itemize}
-        \item \small{
-            \textit{g-value}: depends on previous search and current root
-        }
-        \item \small{
-            \textit{h-value}: depends on current search node and given target
-        }
-    \end{itemize}
-\item \small how about remove $t$ from \textit{h-value}?
+\item \small {Let's review the evaluation function in \textit{Polyanya}}
+\item \small {When there are multiple targets...}
+\begin{itemize}
+    \item \small {\textit{h-value} shouldn't affected by a specific target}
+\end{itemize}
+\item \small {How about remove $t$ from \textit{h-value}}?
 \end{itemize}
 \end{minipage}%
 \begin{minipage}{.4\textwidth}
     \begin{adjustbox}{max totalsize={.9\textwidth}{.9\textheight}, right}
     \begin{tikzpicture}
         \input{src/heuristic.tex}
-        \onslide<1->{\snode}
-        \onslide<2>{\gvalue}
-        \onslide<3->{\hvalue}
+        \onslide<1->{
+            \snode
+            \gvalue
+            \hvalue
+        }
+        \onslide<2->{
+            \drawST{t2}{above}
+            \drawST{t3}{below}
+        }
     \end{tikzpicture}
     \end{adjustbox}
 \end{minipage}
 \end{frame}
 
-\begin{frame}{Multi-target Search: interval heuristic}
-\begin{minipage}{.6\textwidth}
+\begin{frame}{Proposed algorithm 2: interval heuristic}
+\begin{minipage}{.5\textwidth}
 Then we get: Interval heuristic
 \begin{itemize}
     \item \textit{g-value} is same
@@ -54,8 +68,8 @@ Then we get: Interval heuristic
 \end{minipage}
 \end{frame}
 
-\begin{frame}{Multi-target Search: target heuristic}
-\begin{minipage}{.6\textwidth}
+\begin{frame}{Interval heuristic: drawback}
+\begin{minipage}{.4\textwidth}
 \begin{itemize}
     \item \small{
         \textit{interval heuristic} causes redundant expansions
@@ -66,10 +80,11 @@ Then we get: Interval heuristic
     \item \small{
         e.g.: query is "nearest storage locations where capacity $>=100$".
     }
+    \item \small{we need a smarter heuristic...}
 \end{itemize}
 \end{minipage}%
-\begin{minipage}{.4\textwidth}
-    \begin{adjustbox}{max totalsize={.9\textwidth}{.9\textheight}, right}
+\begin{minipage}{.6\textwidth}
+    \begin{adjustbox}{max totalsize={\textwidth}{\textheight}, right}
     \begin{tikzpicture}
         \input{src/polyanya.tex}
         \intervalexpansion
@@ -79,25 +94,19 @@ Then we get: Interval heuristic
 \end{frame}
 
 
-\begin{frame}{Multi-target Search: target heuristic}
-\begin{minipage}{.6\textwidth}
-\small{Introduce the detail of \textit{h-value} in \textit{Polyanya},\\
-$h_p(node, t)$ is}:
+\begin{frame}{Proposed algorithm 3: target heuristic}
+\begin{minipage}{.5\textwidth}
+\small{Let me introduce the detail of \textit{h-value} in \textit{Polyanya},\\
+$h_p(node, t)$ equals}:
 \begin{itemize}
-    \item \small{
-        Case 1: $d_e(r, t_1)$
-    }
-    \item \small{
-        Case 2: $d_e(r, a) + d_e(a, t_2)$\\
-         or $d_e(r, b) + d_e(b, t_2)$
-    }
-    \item \small{
-        Case 3: when $r$ and $t_3$ at same side, compute mirror point of $t_3$, and go to Case 1 or Case 2
-    }
+    \item \small Case 1: $d_e(r, t_1)$
+    \item \small Case 2: $d_e(r, a) + d_e(a, t_2)$
+    \item \small Case 3: when $r$ and $t_3$ at same side, compute mirror point of $t_3$, and go to Case 1 or Case 2
+    
 \end{itemize}
 
 \end{minipage}%
-\begin{minipage}{.4\textwidth}
+\begin{minipage}{.5\textwidth}
     \begin{adjustbox}{max totalsize={.9\textwidth}{.9\textheight}, right}
     \centering
     \includegraphics{pic/ef.png}
@@ -105,47 +114,53 @@ $h_p(node, t)$ is}:
 \end{minipage}
 \end{frame}
 
-\begin{frame}{Multi-target Search: target heuristic}
+\begin{frame}{Proposed algorithm 3: target heuristic}
 \setbeamercovered{invisible}
-\begin{minipage}{\textwidth}
 \small{
 When there are multiple targets ...
 }
-\onslide<2>{
+\onslide<2->{
     \begin{definition}{closest target of search node}
     is a target $t$ that $h_p(node, t)$ is minimal.
     \end{definition}
 }
-\end{minipage}%
-\end{frame}
-
-\begin{frame}{Multi-target Search: target heuristic}
-\begin{minipage}{.4\textwidth}
+\onslide<3->
 \small{
     How to find the closest target for a search node?
 }
-\begin{itemize}
-    \item<2-> \small{Let $NN_e$ be traditional nearest neighbor in euclidean space}
-    \item<3-> \small{It must be:}
-    \begin{itemize}
-        \item<4-> $NN_e(areaA, a)$ or
-        \item<5-> $NN_e(areaB, b)$ or
-        \item<6-> $NN_e(areaC, r)$ or
-        \item<7-> $NN_e(areaC', r')$ or
-    \end{itemize}
-    \item<8-> Standard \textit{R-tree} query
-\end{itemize}
-
-\end{minipage}%
-\begin{minipage}{.6\textwidth}
-    \begin{adjustbox}{max totalsize={.9\textwidth}{.9\textheight}, right}
-    \centering
-    \includegraphics{pic/heuristic.png}
-    \end{adjustbox}
-\end{minipage}
 \end{frame}
 
-\begin{frame}{Multi-target Search: target heuristic}
+\begin{frame}{Proposed algorithm 3: target heuristic}
+\only<1->
+\small{
+Let $NN_e(\textit{area, p})$: traditional nearest neighbor of \textit{p} in \textit{area}, the \textbf{\textit{closest target}} must be:
+}
+\begin{minipage}{.33\textwidth}
+    \begin{itemize}
+        \item \only<2-> {\small{$NN_e(areaA, a)$ or}}
+        \item \only<3-> {\small{$NN_e(areaB, b)$ or}}
+        \item \only<4-> {\small{$NN_e(areaC, r)$ or}}
+        \item \only<5-> {\small{$NN_e(areaC', r')$}}
+    \end{itemize}
+\end{minipage}%
+\begin{minipage}{.66\textwidth}
+    \begin{adjustbox}{max totalsize={\textwidth}{\textheight}, right}
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.0cm,y=2.0cm]
+        \input{src/targeth.tex}
+        \only<1-> \drawbg
+        \only<2> \areaA
+        \only<3> \areaB
+        \only<4> \areaC
+        \only<5> \areaCp
+        \only<6> \drawbest
+        \end{tikzpicture}
+    \end{adjustbox}
+\end{minipage}
+
+\onslide<6-> \small{Standard \textit{R-tree} query}
+\end{frame}
+
+\begin{frame}{Proposed algorithm 3: target heuristic}
 \begin{minipage}{.9\textwidth}
 \begin{itemize}
     \onslide<1-> \item \small{
@@ -162,7 +177,7 @@ When there are multiple targets ...
 \end{minipage}%
 \end{frame}
 
-\begin{frame}{Multi-target Search: target heuristic}
+\begin{frame}{Proposed algorithm 3: target heuristic}
 \setbeamercovered{invisible}
 \begin{minipage}{.9\textwidth}
 \begin{itemize}
@@ -172,7 +187,7 @@ When there are multiple targets ...
 \end{minipage}%
 \end{frame}
 
-\begin{frame}{Multi-target Search: target heuristic refinements}
+\begin{frame}{Proposed algorithm 3: target heuristic refinements}
 \setbeamercovered{invisible}
 \begin{minipage}{.9\textwidth}
 \begin{itemize}
@@ -188,7 +203,7 @@ When there are multiple targets ...
 \end{minipage}%
 \end{frame}
 
-\begin{frame}{Multi-target Search: target heuristic refinements}
+\begin{frame}{Proposed algorithm 3: target heuristic refinements}
 \setbeamercovered{invisible}
 \begin{minipage}{.9\textwidth}
 \begin{itemize}

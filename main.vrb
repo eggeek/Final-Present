@@ -1,0 +1,10 @@
+\frametitle{Proposed algorithm 1: brute-force \textit {Polyanya}}
+\small{A naive solution is calling \textit{Polyanya} for each target:}
+\onslide<2->
+\begin{lstlisting}[language=python]
+for t in targets:
+  polyanya.run(q, t)
+\end{lstlisting}
+\begin{itemize}
+    \item<3->\small{Drawback: inefficient when targets many.}
+\end{itemize}

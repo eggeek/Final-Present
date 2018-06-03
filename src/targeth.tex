@@ -1,0 +1,97 @@
+\definecolor{ttzzqq}{rgb}{0.2,0.6,0.}
+\definecolor{zzwwqq}{rgb}{0.6,0.4,0.}
+\definecolor{qqwwtt}{rgb}{0.,0.4,0.2}
+\definecolor{ccqqqq}{rgb}{0.8,0.,0.}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1.}
+
+\coordinate (a) at (2.5, 2.5);
+\coordinate (b) at (3.5, 2.5);
+\coordinate (c) at (3.2, 2.5);
+\coordinate (r) at (3, 2);
+\coordinate (r') at (3, 3);
+\coordinate (t1) at (2, 2.5);
+\coordinate (t2) at (1.8, 2.82);
+\coordinate (t3) at (2.5, 3);
+\coordinate (t4) at (3.5, 3.3);
+\coordinate (t5) at (4, 2.5);
+\coordinate (t6) at (4.5, 2.3);
+\coordinate (t7) at (3.5, 1.7);
+\coordinate (t8) at (2.5, 1.5);
+
+\newcommand{\nodelabel}[2] {
+    \node[fill,circle,scale=0.3,label=#2:$#1$,color=ududff] at (#1) {$#1$};
+}
+
+\newcommand{\drawbg}{
+\clip(1.,1.) rectangle (5.,4.);
+\fill[line width=2.pt,color=ccqqqq,fill=ccqqqq,fill opacity=0.15000000596046448] (2.5,2.5) -- (1.,4.) -- (1.,1.) -- cycle;
+\fill[line width=2.pt,color=qqwwtt,fill=qqwwtt,fill opacity=0.25] (1.,4.) -- (5.,4.) -- (3.5,2.5) -- (2.5,2.5) -- cycle;
+\fill[line width=2.pt,color=zzwwqq,fill=zzwwqq,fill opacity=0.10000000149011612] (5.,4.) -- (5.,1.) -- (3.5,2.5) -- cycle;
+\fill[line width=2.pt,color=ttzzqq,fill=ttzzqq,fill opacity=0.10000000149011612] (5.,1.) -- (3.5,2.5) -- (2.5,2.5) -- (1.,1.) -- cycle;
+\draw [line width=2.pt] (2.5,2.5)-- (3.5,2.5);
+\draw [line width=2.pt,color=ccqqqq] (2.5,2.5)-- (1.,4.);
+\draw [line width=2.pt,color=ccqqqq] (1.,1.)-- (2.5,2.5);
+\draw [line width=2.pt,color=qqwwtt] (5.,4.)-- (3.5,2.5);
+\draw [line width=2.pt,color=qqwwtt] (2.5,2.5)-- (1.,4.);
+\draw [line width=2.pt,color=zzwwqq] (5.,1.)-- (3.5,2.5);
+\draw [line width=2.pt,color=zzwwqq] (3.5,2.5)-- (5.,4.);
+\draw [line width=2.pt,color=ttzzqq] (5.,1.)-- (3.5,2.5);
+\draw [line width=2.pt,color=ttzzqq] (2.5,2.5)-- (1.,1.);
+\draw[color=ccqqqq] (1.4890424762619727,2.5323273496505436) node {$areaA$};
+\draw[color=qqwwtt] (2.7803970744787185,3.5190547093135964) node {$areaC$};
+\draw[color=zzwwqq] (4.323400261065907,2.817087594385519) node {$areaB$};
+\draw[color=ttzzqq] (3.005556337757536,1.5058660023500525) node {$areaC'$};
+\draw[lightgray, line width=3pt] (a)--(b);
+\nodelabel{a}{above}
+\nodelabel{b}{below}
+\nodelabel{r}{below}
+}
+
+\newcommand{\areaA}{
+    \draw[red] (r)--(a);
+    \draw[red] (t1)--(a);
+    \draw[red, dashed] (t2)--(a);
+    \nodelabel{t1}{below}
+    \nodelabel{t2}{above}
+}
+
+\newcommand{\areaB}{
+    \draw[red] (r)--(b);
+    \draw[red] (t5)--(b);
+    \draw[red, dashed] (t6)--(b);
+    \nodelabel{t5}{above}
+    \nodelabel{t6}{right}
+}
+
+\newcommand{\areaC}{
+    \draw[red] (r)--(t3);
+    \draw[red, dashed] (t4)--(r);
+    \nodelabel{t3}{above}
+    \nodelabel{t4}{above}
+}
+
+\newcommand{\areaCp}{
+    \draw[red] (t7)--(r');
+    \draw[red, dashed] (t8)--(r');
+    \nodelabel{r'}{above}
+    \nodelabel{t7}{right}
+    \nodelabel{t8}{left}
+}
+
+\newcommand{\drawbest}{
+    \draw[red, dashed] (r)--(a);
+    \draw[red, dashed] (a)--(t1);
+    
+    \draw[red, dashed] (r)--(b);
+    \draw[red, dashed] (b)--(t5);
+    
+    \draw[red, dashed] (r)--(c);
+    \draw[red, dashed] (c)--(t7);
+    
+    \draw[red] (r)--(t3);
+    
+    \nodelabel{t1}{below}
+    \nodelabel{t5}{above}
+    \nodelabel{t3}{above}
+    \nodelabel{t7}{right}
+}

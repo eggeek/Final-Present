@@ -6,13 +6,32 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Future work}
+\begin{frame}{Future works 1: improve other query processing}
     \begin{itemize}
         \item \small{
             Proposed algorithms can be used to speed up other types of spatial query which need to compute obstacle distance, e.g. \textit{Obstacle Reverse Nearest Neighbor}.
         }
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Future works 2: improve \textit{target heuristic}}
+    \begin{itemize}
         \item \small {
-          Another interesting direction is improve \textit{target heuristic}, which cost $\approx 80\%$ of total run time to find the closet target.
+          \textit{Target heuristic} cost $\approx 80\%$ of total run time in \textit{R-tree} query. 
+        }
+        \item \small {
+            Improve it by combining four queries into one, or using more suitable datastructure.
+        }
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Future works 3: improve \textit{brute-force Polyanya}}
+    \begin{itemize}
+        \item \small {
+            We notice that \textit{brute-force Polyanya} sometimes outcompetes proposed algorithms in sparse scenario.
+        }
+        \item \small {
+            Instead of considering every targets, maybe a smart pruning strategy can make it work in general scenario. 
         }
     \end{itemize}
 \end{frame}
