@@ -71,20 +71,20 @@ Then we get: Interval heuristic
 \begin{frame}{Interval heuristic: drawback}
 \begin{minipage}{.4\textwidth}
 \begin{itemize}
-    \item \small{
+    \item<2-> \small{
         \textit{interval heuristic} causes redundant expansions
     }
-    \item \small{
+    \item<3-> \small{
         especially in sparse targets scenario
     }
-    \item \small{
+    \item<4-> \small{
         e.g.: query is "nearest storage locations where capacity $>=100$".
     }
-    \item \small{we need a smarter heuristic...}
+    \item<5-> \small{we need a smarter evaluation function...}
 \end{itemize}
 \end{minipage}%
 \begin{minipage}{.6\textwidth}
-    \begin{adjustbox}{max totalsize={\textwidth}{\textheight}, right}
+    \begin{adjustbox}{max totalsize={.9\textwidth}{\textheight}, right}
     \begin{tikzpicture}
         \input{src/polyanya.tex}
         \intervalexpansion
@@ -131,33 +131,49 @@ When there are multiple targets ...
 \end{frame}
 
 \begin{frame}{Proposed algorithm 3: target heuristic}
-\only<1->
-\small{
-Let $NN_e(\textit{area, p})$: traditional nearest neighbor of \textit{p} in \textit{area}, the \textbf{\textit{closest target}} must be:
-}
-\begin{minipage}{.33\textwidth}
-    \begin{itemize}
-        \item \only<2-> {\small{$NN_e(areaA, a)$ or}}
-        \item \only<3-> {\small{$NN_e(areaB, b)$ or}}
-        \item \only<4-> {\small{$NN_e(areaC, r)$ or}}
-        \item \only<5-> {\small{$NN_e(areaC', r')$}}
-    \end{itemize}
+  \begin{itemize}
+    \item \small {In Case 3, instead of flipping targets, we can flip the $r$}
+    \item \small{
+Let $NN_e(\textit{area, p})$: traditional nearest neighbor of \textit{p} in \textit{area}.
+    }
+  \end{itemize}
+
+\begin{minipage}{.35\textwidth}
+  \begin{itemize}
+    \item \only<3-> {$\scriptstyle NN_e(\scriptscriptstyle{areaA \cup areaA'}, \scriptstyle a)$ \small or}
+    \item \only<4-> {$\scriptstyle NN_e(\scriptscriptstyle{areaB \cup areaB'}, \scriptstyle b)$ \small or}
+    \item \only<5-> {$\scriptstyle NN_e(areaC, r)$ \small or}
+    \item \only<6-> {$\scriptstyle NN_e(areaC', r')$}
+    \item \only<7-> {\small Choose the best}
+  \end{itemize}
 \end{minipage}%
-\begin{minipage}{.66\textwidth}
+\begin{minipage}{.6\textwidth}
     \begin{adjustbox}{max totalsize={\textwidth}{\textheight}, right}
         \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.0cm,y=2.0cm]
         \input{src/targeth.tex}
-        \only<1-> \drawbg
-        \only<2> \areaA
-        \only<3> \areaB
-        \only<4> \areaC
-        \only<5> \areaCp
-        \only<6> \drawbest
+          \only<2-> \drawbg
+          \uncover<3> \areaA
+          \uncover<3> \areaAp
+          \only<3> \drawra
+          \only<3> \drawrpa
+          \only<3> \caseA
+          \uncover<4> \areaB
+          \uncover<4> \areaBp
+          \only<4> \drawrb
+          \only<4> \drawrpb
+          \only<4> \caseB
+          \uncover<5> \areaC
+          \only<5> \drawra
+          \only<5> \drawrb
+          \only<5> \caseC
+          \uncover<6> \areaCp
+          \only<6> \drawrpa
+          \only<6> \drawrpb
+          \only<6> \caseCp
+          \only<7> \drawbest
         \end{tikzpicture}
     \end{adjustbox}
 \end{minipage}
-
-\onslide<6-> \small{Standard \textit{R-tree} query}
 \end{frame}
 
 \begin{frame}{Proposed algorithm 3: target heuristic}
