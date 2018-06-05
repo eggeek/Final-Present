@@ -80,7 +80,7 @@ Then we get: Interval heuristic
     \item<4-> \small{
         e.g.: query is "nearest storage locations where capacity $>=100$".
     }
-    \item<5-> \small{we need a smarter evaluation function...}
+  \item<5-> \small{motivation: we may need $t$ in \textit{h-value} to make search smarter}
 \end{itemize}
 \end{minipage}%
 \begin{minipage}{.6\textwidth}
@@ -99,9 +99,9 @@ Then we get: Interval heuristic
 \small{Let me introduce the detail of \textit{h-value} in \textit{Polyanya},\\
 $h_p(node, t)$ equals}:
 \begin{itemize}
-    \item \small Case 1: $d_e(r, t_1)$
-    \item \small Case 2: $d_e(r, a) + d_e(a, t_2)$
-    \item \small Case 3: when $r$ and $t_3$ at same side, compute mirror point of $t_3$, and go to Case 1 or Case 2
+    \item<2-> \small Case 1: $d_e(r, t_1)$
+    \item<3-> \small Case 2: $d_e(r, a) + d_e(a, t_2)$
+    \item<4-> \small Case 3: when $r$ and $t_3$ at same side, compute mirror point of $t_3$, and go to Case 1 or Case 2
     
 \end{itemize}
 
