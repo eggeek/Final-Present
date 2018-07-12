@@ -19,4 +19,5 @@
 *.snm
 *.nav
 !final.pdf
+!MonashCrest.pdf
 **/.DS_Store
