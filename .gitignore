@@ -18,6 +18,9 @@
 *.out
 *.snm
 *.nav
+*.fls
+*.fdb_latexmk
+*.synctex.gz
 !final.pdf
 !MonashCrest.pdf
 **/.DS_Store
